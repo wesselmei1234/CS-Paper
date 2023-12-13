@@ -53,6 +53,14 @@ def cleaned_features(featuresmap):
         featuresmap.pop('ENERGY STAR Certified')
     return featuresmap
 
+def create_tv_list(self, data):
+    tv_list = []
+    for tvs_per_model in data.values():
+        for tv in tvs_per_model:
+            tv_object = TV(tv)
+            tv_list.append(tv_object)
+    return tv_list
+
 
 def find_width(feature):
     found = False
@@ -62,7 +70,6 @@ def find_width(feature):
         classwidth = 'class' + str(match.group(1))[0]
         return classwidth, found
     return None, found
-
 
 
 class TV: 
@@ -100,16 +107,4 @@ class TV:
         result = re.sub(r'-', '', result)
         return result
     
-
-class TVList:
-    def __init__(self, data):
-        self.items = self.create_tv_list(data)
-
-    def create_tv_list(self, data):
-        tv_list = []
-        for tvs_per_model in data.values():
-            for tv in tvs_per_model:
-                tv_object = TV(tv)
-                tv_list.append(tv_object)
-        return tv_list
     
