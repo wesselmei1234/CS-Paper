@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from func import bootstrap, run_iteration
-from tv import TVList
+from tv import create_tv_list
 
 # import data
 JSON_FILE_PATH = 'TVs-all-merged.json'
@@ -11,7 +11,7 @@ with open(JSON_FILE_PATH, 'r', encoding='utf-8') as json_file:
     data = json.load(json_file)
 
 # create a list of all tvs
-tv_data = TVList(data).items
+tv_data = create_tv_list(data)
 
 # create train and test set
 tv_list, tv_list_test = bootstrap(tv_data)
